@@ -1,0 +1,22 @@
+
+实现该文件夹下reactor.c实现百万级并发可能遇到的问题
+
+
+
+
+1. "Too many files"
+    由于Linux系统下 ulimit 内设置了文件最大数量
+    ulimit -a
+    查看参数， 可以用 ulimit -n 进行修改
+    在测试情况下客户端和服务器均需要修改
+
+
+2. "Cannot assign requested addr"
+    fd 和 tcp 连接属于一对一的关系
+    所以在端口号确定的情况下只有客户端通过改变请求方的端口来实现多个fd
+    也就是1024 - 65535 个port
+    可以通过在服务器端添加循环, 创建多个port不同用于listen的fd
+
+3.  在较低版本的ubuntu中防火墙中的参数也会对并发造成影响
+
+4. 内存不够时, 可以对tcp协议进行修改
