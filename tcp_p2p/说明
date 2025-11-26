@@ -1,0 +1,10 @@
+
+
+
+p2p_tcp.c
+
+该文件中实现的代码是模拟双端同时接受到对方的connect请求
+在双端同时接收到connect请求后都会向对方发送SYN, ack
+并在此之后都会向对方发送第二个ack, 然后双方会同时进入connection established阶段
+
+//只限于在同一个局域网下实现
